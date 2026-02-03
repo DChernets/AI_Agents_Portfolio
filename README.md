@@ -1,104 +1,104 @@
 # AI Agents Portfolio
 
-Портфолио AI-агентов и автоматизированных решений на базе Python, Telegram и AI технологий.
+Portfolio of AI agents and automated solutions built with Python, Telegram, and AI technologies.
 
 ---
 
-## 🚀 Проекты
+## 🚀 Projects
 
 ### [AI_SMM](./AI_SMM/)
-Telegram боты для оптовых поставщиков на рынках
+Telegram Bots for Wholesale Suppliers
 
-Автоматизация каталога товаров и публикаций в Telegram каналы с помощью AI (Google Gemini 2.5). Система включает два бота: основной для управления товарами и поддержки.
+Automated product catalog and Telegram channel publishing using AI (Google Gemini 2.5). The system includes two bots: main bot for product management and support bot.
 
-**Возможности:**
-- AI-распознавание товаров по фото
-- Автоматическая публикация в каналы
-- Улучшение фотографий и описаний
-- Прайс-листы и информационные посты
-- Техническая поддержка 24/7
+**Features:**
+- AI product recognition from photos
+- Automatic channel publishing
+- Photo and text enhancement
+- Price lists and informational posts
+- 24/7 technical support
 
-**Технологии:** Python, Telegram Bot, Google Gemini API, Google Sheets API
+**Technologies:** Python, Telegram Bot, Google Gemini API, Google Sheets API
 
 ---
 
 ### [Cleaning_manager](./Cleaning_manager/)
 Cleaning Tender Processor - Google Drive Integration
 
-Система обработки документов с интеграцией Google Drive. Автоматически скачивает документы, анализирует с помощью AI и генерирует Excel таблицы с расчетами.
+Document processing system with Google Drive integration. Automatically downloads documents, analyzes them with AI, and generates Excel spreadsheets with calculations.
 
-**Возможности:**
-- Поддержка DOCX, PDF, XLS, XLSX
-- OCR для сканированных PDF (Tesseract)
-- AI анализ через Polza.ai
-- Excel генерация с расчетами
-- Мониторинг в реальном времени
+**Features:**
+- Support for DOCX, PDF, XLS, XLSX
+- OCR for scanned PDFs (Tesseract)
+- AI analysis via Polza.ai
+- Excel generation with calculations
+- Real-time monitoring
 
-**Технологии:** Python, Google Drive API, Polza.ai AI, Tesseract OCR
+**Technologies:** Python, Google Drive API, Polza.ai AI, Tesseract OCR
 
 ---
 
 ### [ContentoAI](./ContentoAI/)
 Telegram Channel Automation
 
-SaaS платформа для автоматизированного управления Telegram каналами с AI. Умная генерация уникального контента и постинг по расписанию.
+SaaS platform for automated Telegram channel management with AI. Smart generation of unique content and scheduled posting.
 
-**Возможности:**
-- Автоматизированный онбординг через Telegram бот
-- Сбор контента из RSS и Telegram каналов
-- AI-генерация уникальных постов
-- Планировщик публикаций с оптимальным временем
-- Аналитика постов
+**Features:**
+- Automated onboarding via Telegram bot
+- Content collection from RSS and Telegram channels
+- AI generation of unique posts
+- Post scheduler with optimal timing
+- Post analytics
 
-**Технологии:** Python, FastAPI, PostgreSQL, Redis, Docker, Google Gemini API
+**Technologies:** Python, FastAPI, PostgreSQL, Redis, Docker, Google Gemini API
 
 ---
 
 ### [Moqup](./Moqup/)
-Транспортно-логистическая платформа
+Transport & Logistics Platform
 
-Комплексная система для управления доставками из Китая, включающая AI чат-бот для консультирования клиентов, TNVED API для расчетов и CRM2Sheets для экспорта данных.
+Comprehensive system for managing deliveries from China, including AI chatbot for client consulting, TNVED API for customs calculations, and CRM2Sheets for data export.
 
-**Возможности:**
-- AI чат-бот для консультирования клиентов
-- TNVED API для определения кодов и расчетов таможенных платежей
-- CRM2Sheets для экспорта данных из CRM в Excel с изображениями
-- Scheduler для автоматизации задач
+**Features:**
+- AI chatbot for client consulting
+- TNVED API for customs codes and duties calculation
+- CRM2Sheets for CRM to Excel export with images
+- Scheduler for task automation
 
-**Технологии:** Python, FastAPI, Telegram Bot, Google Gemini API, Google Sheets API
+**Technologies:** Python, FastAPI, Telegram Bot, Google Gemini API, Google Sheets API
 
 ---
 
 ### [tg_krot](./tg_krot/)
 Telegram Lead Generation Bot
 
-Система для автоматического сбора лидов из Telegram чатов с использованием Gemini AI для фильтрации и оценки качества лидов.
+System for automatic lead generation from Telegram chats using Gemini AI for filtering and lead quality scoring.
 
-**Возможности:**
-- Сбор сообщений из публичных групп (10-50 чатов)
-- AI-фильтрация и оценка качества (0.0 - 1.0 score)
-- Автоматическая доставка квалифицированных лидов в менеджерский канал
-- Контекстная память диалога
+**Features:**
+- Message collection from public groups (10-50 chats)
+- AI filtering and quality scoring (0.0 - 1.0 score)
+- Automatic delivery of qualified leads to manager channel
+- Contextual dialogue memory
 
-**Технологии:** Python, Pyrogram, Telegram Bot, Google Gemini API, SQLite
-
----
-
-## 📊 Статистика
-
-- **Всего проектов:** 5
-- **Проектов с Telegram Bot API:** 4
-- **Проектов с Google Gemini AI:** 5
-- **Проектов с Google Sheets API:** 3
-- **Проектов с FastAPI:** 2
+**Technologies:** Python, Pyrogram, Telegram Bot, Google Gemini API, SQLite
 
 ---
 
-## 🛠️ Основные технологии
+## 📊 Statistics
 
-| Технология | Проекты |
+- **Total Projects:** 5
+- **Projects with Telegram Bot API:** 4
+- **Projects with Google Gemini AI:** 5
+- **Projects with Google Sheets API:** 3
+- **Projects with FastAPI:** 2
+
+---
+
+## 🛠️ Key Technologies
+
+| Technology | Projects |
 |------------|---------|
-| **Python** | Все |
+| **Python** | All |
 | **Telegram Bot API** | AI_SMM, ContentoAI, Moqup, tg_krot |
 | **Google Gemini AI** | AI_SMM, Moqup, tg_krot, ContentoAI |
 | **Google Sheets API** | AI_SMM, Moqup, Cleaning_manager |
@@ -109,10 +109,10 @@ Telegram Lead Generation Bot
 
 ---
 
-## 📞 Контакты
+## 📞 Contacts
 
 - GitHub: [@DChernets](https://github.com/DChernets)
 
 ---
 
-*Портфолио обновляется регулярно*
+*Portfolio updated regularly*
