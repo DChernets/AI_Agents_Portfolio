@@ -1,165 +1,165 @@
-# ContentAI - Telegram Channel Automation
+# ContentAI - Автоматизация Telegram каналов
 
-SaaS platform for automated Telegram channel management with AI.
+SaaS платформа для автоматизированного управления Telegram каналами с AI.
 
-## 🚀 Features
+## 🚀 Возможности
 
-- **Automated onboarding** through Telegram bot
-- **Smart content collection** from RSS and Telegram channels
-- **AI-powered unique post generation** with style preservation
-- **Post scheduler** with optimal timing
-- **Post performance analytics**
+- **Автоматизированный онбординг** через Telegram бот
+- **Умный сбор контента** из RSS и Telegram каналов
+- **AI-генерация уникальных постов** с сохранением стиля
+- **Планировщик постов** с оптимальным временем
+- **Аналитика постов**
 
-## 📋 Requirements
+## 📋 Требования
 
 - Python 3.11+
 - PostgreSQL 15+
 - Redis 7+
-- Docker & Docker Compose (recommended)
+- Docker & Docker Compose (рекомендуется)
 
-## 🛠️ Installation & Setup
+## 🛠️ Установка и настройка
 
-### Method 1: Docker Compose (Recommended)
+### Метод 1: Docker Compose (Рекомендуется)
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd contentai
-   ```
+1. **Клонируйте репозиторий**
+    ```bash
+    git clone <repository-url>
+    cd contentai
+    ```
 
-2. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your API keys
-   ```
+2. **Настройте переменные окружения**
+    ```bash
+    cp .env.example .env
+    # Отредактируйте .env с вашими API ключами
+    ```
 
-3. **Start the project**
-   ```bash
-   docker-compose up --build
-   ```
+3. **Запустите проект**
+    ```bash
+    docker-compose up --build
+    ```
 
-4. **Initialize the database**
-   ```bash
-   docker-compose exec app python scripts/init_db.py
-   ```
+4. **Инициализируйте базу данных**
+    ```bash
+    docker-compose exec app python scripts/init_db.py
+    ```
 
-### Method 2: Local Development
+### Метод 2: Локальная разработка
 
-1. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+1. **Установите зависимости**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-2. **Set up PostgreSQL and Redis**
-   ```bash
-   # Ensure PostgreSQL and Redis are running
-   # Create contentai_db database
-   ```
+2. **Настройте PostgreSQL и Redis**
+    ```bash
+    # Убедитесь, что PostgreSQL и Redis запущены
+    # Создайте базу данных contentai_db
+    ```
 
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env file
-   ```
+3. **Настройте переменные окружения**
+    ```bash
+    cp .env.example .env
+    # Отредактируйте файл .env
+    ```
 
-4. **Initialize the database**
-   ```bash
-   python scripts/init_db.py
-   ```
+4. **Инициализируйте базу данных**
+    ```bash
+    python scripts/init_db.py
+    ```
 
-5. **Run the application**
-   ```bash
-   python app/main.py
-   ```
+5. **Запустите приложение**
+    ```bash
+    python app/main.py
+    ```
 
-## 📁 Project Structure
+## 📁 Структура проекта
 
 ```
 contentai/
-├── app/                    # Main application
-│   ├── api/               # API routes
-│   ├── models/            # Database models
-│   ├── services/          # Business logic
-│   └── utils/             # Utilities
-├── config/                # Configuration
-├── scripts/               # Scripts
-├── tests/                 # Tests
-├── logs/                  # Logs
-└── docker-compose.yml     # Docker configuration
+├── app/                    # Основное приложение
+│   ├── api/               # API роуты
+│   ├── models/            # Модели базы данных
+│   ├── services/          # Бизнес-логика
+│   └── utils/             # Утилиты
+├── config/                # Конфигурация
+├── scripts/               # Скрипты
+├── tests/                 # Тесты
+├── logs/                  # Логи
+└── docker-compose.yml     # Docker конфигурация
 ```
 
-## 🔧 Configuration
+## 🔧 Конфигурация
 
-Main environment variables in `.env`:
+Основные переменные окружения в `.env`:
 
-- `TELEGRAM_BOT_TOKEN` - Telegram bot token
-- `GEMINI_API_KEY` - Gemini API key
-- `DATABASE_URL` - PostgreSQL connection URL
-- `REDIS_URL` - Redis connection URL
+- `TELEGRAM_BOT_TOKEN` - токен Telegram бота
+- `GEMINI_API_KEY` - ключ Gemini API
+- `DATABASE_URL` - URL подключения к PostgreSQL
+- `REDIS_URL` - URL подключения к Redis
 
-## 🤖 Usage
+## 🤖 Использование
 
-1. **Create Telegram bot** via @BotFather
-2. **Get API key** Gemini AI
-3. **Start the bot** with `/start` command
-4. **Complete onboarding** - specify topic, audience, sources
-5. **Start automated content publishing**
+1. **Создайте Telegram бот** через @BotFather
+2. **Получите API ключ** Gemini AI
+3. **Запустите бота** с командой `/start`
+4. **Пройдите онбординг** - укажите тему, аудиторию, источники
+5. **Запустите автоматическую публикацию контента**
 
-## 📚 API Documentation
+## 📚 Документация API
 
-After startup, API documentation is available at:
+После запуска документация API доступна по адресу:
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
-## 🧪 Testing
+## 🧪 Тестирование
 
 ```bash
-# Run all tests
+# Запустить все тесты
 pytest
 
-# Run with coverage
+# Запустить с покрытием
 pytest --cov=app
 
-# Run specific test
+# Запустить конкретный тест
 pytest tests/test_telegram_bot.py
 ```
 
-## 📊 Monitoring
+## 📊 Мониторинг
 
-- **Logs**: `logs/app.log`
-- **Health check**: `http://localhost:8000/health`
-- **Metrics**: `http://localhost:8000/metrics` (coming soon)
+- **Логи**: `logs/app.log`
+- **Проверка здоровья**: `http://localhost:8000/health`
+- **Метрики**: `http://localhost:8000/metrics` (в разработке)
 
-## 🤝 Development
+## 🤝 Разработка
 
-### Adding New Features
+### Добавление новых функций
 
-1. Create model in `app/models/`
-2. Add business logic in `app/services/`
-3. Create API endpoint in `app/api/`
-4. Add tests in `tests/`
+1. Создайте модель в `app/models/`
+2. Добавьте бизнес-логику в `app/services/`
+3. Создайте API эндпоинт в `app/api/`
+4. Добавьте тесты в `tests/`
 
-### Service Structure
+### Структура сервисов
 
-- `TelegramBotService` - Telegram API integration
-- `ContentSourcingService` - content collection from sources
-- `AIGenerationService` - AI-powered content generation
-- `PublishingService` - post publishing
-- `SchedulerService` - task scheduling
+- `TelegramBotService` - интеграция с Telegram API
+- `ContentSourcingService` - сбор контента из источников
+- `AIGenerationService` - AI-генерация контента
+- `PublishingService` - публикация постов
+- `SchedulerService` - планирование задач
 
-## 📝 License
+## 📝 Лицензия
 
-Copyright © 2025 ContentAI. All rights reserved.
+Copyright © 2025 ContentAI. Все права защищены.
 
-This software product is protected by copyright law. Any copying, distribution, or use without written permission from the copyright holder is prohibited.
+Данный программный продукт защищен авторским правом. Любое копирование, распространение или использование без письменного разрешения правообладателя запрещено.
 
-For commercial licensing inquiries, please contact us:
+По вопросам коммерческого лицензирования свяжитесь с нами:
 - Telegram: @ContentAI_Support
 - Email: support@contentai.ai
 
-## 🆘 Support
+## 🆘 Поддержка
 
-If you have questions or issues:
-1. Check [FAQ](docs/FAQ.md)
-2. Search existing [Issues](../../issues)
-3. Create new Issue with problem description
+Если у вас есть вопросы или проблемы:
+1. Проверьте [FAQ](docs/FAQ.md)
+2. Поищите в существующих [Issues](../../issues)
+3. Создайте новый Issue с описанием проблемы
