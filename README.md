@@ -7,19 +7,20 @@ Portfolio of production AI agents and automation systems built with Python, Fast
 ## Projects
 
 ### [SENSOR](./SENSOR/)
-AI-powered Telegram intelligence platform for lead generation and chat knowledge bases.
+Telegram intelligence SaaS for lead generation, audience analysis, source discovery, and conversational search.
 
-SENSOR monitors Telegram groups, detects commercial intent with AI, and turns collected messages into searchable RAG knowledge bases.
+SENSOR connects a user's Telegram account, monitors selected chats and channels, detects buying intent, scores active audience members, recommends new Telegram sources, and turns collected messages into searchable RAG knowledge bases.
 
 **Features:**
-- Multi-tenant Telegram account connection via QR code or phone login
-- AI lead detection from Telegram chats, channels, and communities
-- Semantic analysis beyond keyword matching
-- SENSOR.Chat: conversational RAG search over collected Telegram messages
-- SENSOR.Leads: lead scoring, manager delivery, and feedback calibration
-- Encrypted Telegram session storage and tenant data isolation
+- SENSOR.Leads: keyword and AI modes, live monitoring, historical scans, lead delivery, CSV export
+- SENSOR.Chat: Telegram message ingest, FileSearch/RAG, topic digest, source-aware answers
+- SENSOR.Audience: active participant collection, AI scoring, evidence quotes, CSV export
+- SENSOR.Catalog: source catalog, similar-source recommendations, audience-overlap graph
+- SENSOR.Tasks: scheduled AI digests and recurring Telegram intelligence tasks
+- Multi-tenant organizations, team support, encrypted Telegram sessions, stable userbot profiles
+- Web dashboard, Telegram bot UI, billing tiers, quotas, YooKassa/CryptoPay/Telegram Stars
 
-**Technologies:** Python, FastAPI, Telethon, Pyrogram, python-telegram-bot, Google Gemini, FileSearch/RAG, SQLite/PostgreSQL
+**Technologies:** Python, FastAPI, PostgreSQL, Telethon, Pyrogram, python-telegram-bot, Google Gemini, FileSearch/RAG, React/Vite, Docker, nginx
 
 ---
 
@@ -96,7 +97,7 @@ AI-assisted system for contract review and cross-document validation in industri
 - **Production Projects:** 4
 - **Projects with Telegram Bot API:** 3
 - **Projects with Google Gemini AI:** 3
-- **Projects with document automation:** 4
+- **Projects with document automation:** 3
 - **Projects with FastAPI:** 2
 
 ---
@@ -114,6 +115,7 @@ AI-assisted system for contract review and cross-document validation in industri
 | **Google Drive API** | Cleaning_manager |
 | **OCR / document parsing** | Cleaning_manager, industrial_automation |
 | **RAG / semantic search** | SENSOR, Moqup |
+| **React / Vite** | SENSOR |
 
 ---
 
