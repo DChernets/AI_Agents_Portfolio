@@ -1,333 +1,127 @@
-# 🚛 Moqup - Транспортно-логистическая платформа
+# Moqup - платформа автоматизации импорта и логистики
 
-Комплексная система для управления доставками из Китая, включающая:
-- **AI Чат-бот** для консультирования клиентов
-- **TNVED API** для определения кодов ТН ВЭД и расчета таможенных платежей
-- **CRM2Sheets** для экспорта данных из CRM в Excel с изображениями
-- **Scheduler** для автоматизации задач
-
-## 📁 Структура проекта
-
-```
-Moqup/
-├── venv/                     # Общее виртуальное окружение
-├── config/                   # Общие конфигурационные файлы
-│   └── google-credentials.json
-├── chat_bot/                 # AI чат-бот для Telegram
-│   ├── ai_chatbot.py        # Основной файл бота
-│   ├── full_prompt.py       # База знаний
-│   ├── config.py            # Конфигурация
-│   └── .env                 # Настройки бота
-├── code_tnved/              # FastAPI сервис для ТН ВЭД (порт 8000)
-│   ├── app/                 # Приложение FastAPI
-│   └── .env                 # Настройки API
-├── CRM2Sheets/              # Сервис экспорта в Excel (порт 8001)
-│   ├── app/                 # FastAPI приложение
-│   │   ├── main.py         # Главный файл приложения
-│   │   ├── config.py       # Конфигурация
-│   │   └── services/
-│   │       └── sheets.py   # Работа с Excel и изображениями
-│   ├── field_mapping.py    # Маппинг полей из CRM
-│   ├── .env                # Настройки сервиса
-│   ├── requirements.txt    # Зависимости
-│   └── log_config.json     # Конфигурация логирования
-├── scheduler/               # Планировщик задач
-├── systemd/                 # Конфигурации для systemd
-├── requirements.txt         # Общие зависимости
-├── start_all.sh            # Запуск всех сервисов
-├── start_chatbot.sh        # Запуск бота
-├── start_tnved.sh          # Запуск TNVED API
-├── start_crm2sheets.sh     # Запуск CRM2Sheets
-├── logs.sh                 # Просмотр логов
-└── README.md               # Этот файл
-```
-
-## 🚀 Быстрый старт
-
-### Управление сервисами через systemd
-
-Все сервисы настроены для автоматического запуска через systemd:
-
-```bash
-# Просмотр статуса всех сервисов
-systemctl status moqup-chatbot
-systemctl status moqup-tnved
-systemctl status moqup-crm2sheets
-
-# Запуск сервиса
-systemctl start moqup-crm2sheets
-
-# Остановка сервиса
-systemctl stop moqup-crm2sheets
-
-# Перезапуск сервиса
-systemctl restart moqup-crm2sheets
-
-# Просмотр логов
-journalctl -u moqup-crm2sheets -f
-# или
-tail -f /opt/moqup/CRM2Sheets/crm2sheets.log
-```
-
-### Ручной запуск (для разработки)
-
-```bash
-cd /opt/moqup
-
-# Запуск чат-бота
-./start_chatbot.sh
-
-# Запуск TNVED API
-./start_tnved.sh
-
-# Запуск CRM2Sheets
-./start_crm2sheets.sh
-
-# Запуск всех сервисов
-./start_all.sh
-```
-
-## 🤖 AI Чат-бот (Telegram)
-
-### Возможности:
-- 🎯 Интеллектуальная классификация клиентов
-- 💬 Консультации по полной базе знаний
-- 📋 Автоматический сбор брифа
-- 🔄 Эскалация на менеджера
-- 💾 Контекстная память диалога
-
-### Настройка:
-```bash
-cd chat_bot
-cp .env.example .env
-# Отредактируйте .env:
-# - BOT_TOKEN (токен от @BotFather)
-# - AI_API_KEY (ключ Gemini API)
-# - MANAGER_CHAT_ID (ID менеджера)
-```
-
-## 🔧 TNVED API (порт 8000)
-
-### Возможности:
-- 📦 Определение кодов ТН ВЭД
-- 💰 Расчет таможенных пошлин
-- 📋 Информация о ставках НДС
-- ⚡ FastAPI REST API
-
-### Эндпоинты:
-- `GET /api/tnved/search` - Поиск кода ТН ВЭД
-- `POST /api/tnved/calculate` - Расчет платежей
-
-### Настройка:
-```bash
-cd code_tnved
-cp .env.example .env
-# Отредактируйте .env:
-# - GEMINI_API_KEY
-# - POSTBACK_URL
-# - PORT=8000
-```
-
-## 📊 CRM2Sheets (порт 8001)
-
-### Возможности:
-- 📥 Прием вебхуков от CRM
-- 📄 Создание Excel файлов с данными
-- 🖼️ **Вставка изображений товаров в Excel**
-- 📦 Автоматическая выгрузка заказов
-- 🔐 Защищенный webhook endpoint
-
-### Настройки изображений:
-
-В файле `.env` можно настроить размер изображений:
-
-```bash
-# Размер изображений в Excel
-# Доступные значения: small, medium, large
-IMAGE_SIZE=medium
-```
-
-**Варианты размеров:**
-- `small` - 60x60px (компактный, до 3-х картинок на товар)
-- `medium` - 100x100px (стандартный, до 2-х картинок на товар) ← **по умолчанию**
-- `large` - 150x150px (детальный, 1 картинка на товар)
-
-### Настройка:
-```bash
-cd CRM2Sheets
-cp .env.example .env
-# Отредактируйте .env:
-# - GOOGLE_CREDENTIALS_PATH=/opt/moqup/config/google-credentials.json
-# - SPREADSHEET_ID (ID Google таблицы-шаблона)
-# - SHEET_NAME (имя листа, обычно Лист1)
-# - WEBHOOK_ID (секретный ID для защиты)
-# - IMAGE_SIZE (small/medium/large)
-```
-
-### Эндпоинты:
-- `POST /webhook/crm/{webhook_id}` - Прием данных от CRM
-- `GET /download/{file_id}` - Скачивание сгенерированного файла
-- `GET /health` - Проверка здоровья сервиса
-
-### Как работает:
-1. CRM отправляет POST запрос с данными о товарах
-2. Сервис получает заголовки из Google Sheets шаблона
-3. Создается XLSX файл через openpyxl
-4. Изображения скачиваются и вставляются в файл
-5. Возвращается ссылка на скачивание файла
-
-### Пример использования:
-```bash
-# Отправка данных
-curl -X POST https://crm.vedpanel.ru/webhook/crm/{WEBHOOK_ID} \
-  -H Content-Type: application/json \
-  -d '{
-    codeOrder: ORDER-001,
-    name: Товар,
-    article: ART-001,
-    images: [https://example.com/image1.jpg, https://example.com/image2.jpg],
-    ...
-  }'
-
-# Ответ:
-{
-  status: success,
-  download_url: https://crm.vedpanel.ru/download/{file_id},
-  products_count: 1,
-  order_number: ORDER-001
-}
-```
-
-## 📦 Зависимости
-
-### Общие (requirements.txt):
-- `python-telegram-bot==20.7`
-- `fastapi==0.115.2`
-- `uvicorn[standard]==0.32.0`
-- `pydantic==2.9.2`
-- `aiohttp==3.9.1`
-
-### CRM2Sheets (CRM2Sheets/requirements.txt):
-- `openpyxl==3.1.2` - создание Excel файлов
-- `Pillow==11.1.0` - обработка изображений
-- `google-api-python-client` - работа с Google Sheets API
-
-## 🔄 Systemd сервисы
-
-Все сервисы настроены на автозапуск при старте системы:
-
-- `moqup-chatbot.service` - Telegram бот
-- `moqup-tnved.service` - TNVED API
-- `moqup-crm2sheets.service` - CRM2Sheets сервис
-
-Конфигурации находятся в `/etc/systemd/system/`
-
-## 📝 Логирование
-
-### Логи сервисов:
-- **CRM2Sheets:** `/opt/moqup/CRM2Sheets/crm2sheets.log`
-- **TNVED API:** через systemd journal
-- **Чат-бот:** через systemd journal
-
-### Просмотр логов:
-```bash
-# Через скрипт
-./logs.sh
-
-# Напрямую
-tail -f /opt/moqup/CRM2Sheets/crm2sheets.log
-journalctl -u moqup-crm2sheets -f
-journalctl -u moqup-tnved -f
-journalctl -u moqup-chatbot -f
-```
-
-## 🔧 Разработка
-
-### Обновление кода:
-```bash
-cd /opt/moqup
-git pull
-source venv/bin/activate
-pip install -r requirements.txt
-
-# Перезапуск сервисов
-systemctl restart moqup-crm2sheets
-systemctl restart moqup-tnved
-systemctl restart moqup-chatbot
-```
-
-### Добавление новых зависимостей:
-```bash
-source venv/bin/activate
-pip install package_name
-pip freeze > requirements.txt
-```
-
-## 🌐 Порты и эндпоинты
-
-- **TNVED API:** http://localhost:8000
-- **CRM2Sheets:** http://localhost:8001
-- **Telegram Bot:** работает через polling
-
-## 🔐 Безопасность
-
-- Все вебхуки защищены уникальными ID
-- Credentials для Google API хранятся в `/opt/moqup/config/`
-- Переменные окружения в `.env` файлах
-- Временные файлы автоматически очищаются
-
-## 📊 Мониторинг
-
-### Проверка здоровья сервисов:
-```bash
-# CRM2Sheets
-curl http://localhost:8001/health
-
-# TNVED API
-curl http://localhost:8000/health
-
-# Статус systemd
-systemctl status moqup-*
-```
-
-## 🛠️ Troubleshooting
-
-### Сервис не запускается:
-```bash
-# Проверка логов
-journalctl -u moqup-crm2sheets -n 50
-
-# Проверка конфигурации
-systemctl cat moqup-crm2sheets
-
-# Перезапуск
-systemctl restart moqup-crm2sheets
-```
-
-### Проблемы с изображениями:
-- Проверьте доступность URL изображений
-- Убедитесь что установлены `openpyxl` и `Pillow`
-- Проверьте настройку `IMAGE_SIZE` в .env
-
-### Ошибка address already in use:
-```bash
-# Проверка занятости порта
-lsof -i :8001
-
-# Остановка процесса
-systemctl stop moqup-crm2sheets
-```
-
-## 📞 Интеграция между сервисами
-
-Чат-бот может обращаться к TNVED API для получения кодов и расчетов.
-CRM отправляет данные в CRM2Sheets через вебхуки.
-
-## 📄 Версионирование
-
-Проект использует Git для версионирования. Все изменения коммитятся в репозиторий.
+**Business automation platform для импорта из Китая в РФ, логистики, классификации ТН ВЭД, CRM-процессов и генерации документов.**
 
 ---
 
-**Дата последнего обновления:** 2025-12-30
-**Версия:** 2.0 (добавлен CRM2Sheets с поддержкой изображений)
+## Обзор
+
+Moqup - production microservice-платформа, которая автоматизирует операционные процессы импортно-логистического бизнеса: AI-классификацию товаров, брокерские ответы, экспорт данных из CRM, генерацию документов и плановые webhook-задачи.
+
+Платформа построена как набор независимых сервисов с общей бизнес-моделью и PostgreSQL-first архитектурой.
+
+---
+
+## Микросервисы
+
+### AI Broker API
+Основной AI-сервис для классификации товаров и брокерских рекомендаций:
+- принимает данные товара по webhook;
+- выполняет Step 1: shortlist кодов ТН ВЭД и уточняющие вопросы;
+- сохраняет состояние заявки в PostgreSQL;
+- принимает ответы клиента на уточнения;
+- выполняет Step 2: финальный код, документы, риски, Честный Знак и рекомендации;
+- предоставляет JSON API и dev UI.
+
+### TNVED API
+Legacy FastAPI-сервис для таможенной классификации:
+- определяет 10-значный код ТН ВЭД;
+- рассчитывает пошлину и НДС;
+- поддерживает описание товара и опциональное изображение;
+- отправляет результат обратно в CRM или postback внешнего сайта.
+
+### CRM2Sheets
+Автоматизация выгрузки CRM:
+- принимает CRM webhooks;
+- генерирует оформленные Excel-файлы;
+- вставляет изображения товаров в таблицы;
+- поддерживает Google Sheets templates и downloadable outputs.
+
+### Doc Filler
+Сервис генерации документов:
+- заполняет Word-шаблоны структурированными данными заказа/клиента;
+- генерирует договоры, счета и отгрузочные документы;
+- работает как webhook-driven FastAPI сервис.
+
+### Scheduler
+Планировщик автоматизаций:
+- выполняет webhook-задачи по расписанию;
+- поддерживает настраиваемые endpoints и время запуска;
+- работает в production через systemd.
+
+### Product Search
+Iframe-ready инструмент для личного кабинета:
+- пошагово собирает бриф на поиск товара в Китае;
+- сохраняет черновики по session_id;
+- использует AI для summary и нормализации описаний;
+- проектируется как web UI, а не Telegram-first сценарий.
+
+---
+
+## Архитектура
+
+- microservice architecture с общим бизнес-контекстом;
+- PostgreSQL как основная база данных;
+- pgvector-ready дизайн для будущего semantic search;
+- async-first FastAPI services;
+- webhook-интеграции с CRM и внешними сайтами;
+- production deployment через systemd на Linux VPS;
+- environment-based конфигурация и защищенные endpoints.
+
+---
+
+## Технологический стек
+
+| Категория | Технологии |
+|-----------|------------|
+| Backend | Python 3.10+, FastAPI, asyncio |
+| Database | PostgreSQL, pgvector-ready architecture |
+| AI | Google Gemini |
+| Documents | openpyxl, Pillow, python-docx |
+| Integrations | Webhooks, Google Sheets API |
+| Deployment | Linux VPS, systemd, nginx |
+| Validation | Pydantic |
+| HTTP | httpx |
+
+---
+
+## Бизнес-эффект
+
+- сокращение ручной работы по классификации товаров и брокерским ответам;
+- автоматизация CRM-to-Excel выгрузок с изображениями товаров;
+- стандартизация генерации документов по шаблонам;
+- единая основа для будущей client memory, RAG и CRM enrichment;
+- перенос ключевых операций в production-managed сервисы.
+
+---
+
+## Production
+
+Сервисы развернуты на выделенном Linux-сервере и управляются через systemd:
+
+```text
+moqup-ai-broker
+moqup-tnved
+moqup-crm2sheets
+moqup-docfiller
+moqup-scheduler
+moqup-chatbot
+```
+
+---
+
+## Статус
+
+| Сервис | Статус |
+|--------|--------|
+| AI Broker | Production / основной AI API |
+| TNVED API | Legacy production service |
+| CRM2Sheets | Production |
+| Doc Filler | Production |
+| Scheduler | Production |
+| Chatbot | В разработке |
+| Product Search | Запланирован / архитектура готова |
+
+---
+
+*Создано на Python, FastAPI, PostgreSQL, Google Gemini и инструментах document automation.*
