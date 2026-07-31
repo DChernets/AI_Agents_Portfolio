@@ -1,128 +1,73 @@
-# AI Agents Portfolio
+# Dmitry Chernets — Applied AI Engineering Portfolio
 
-Portfolio of production AI agents and automation systems built with Python, FastAPI, Telegram, document processing, and LLM integrations.
+Selected work in applied AI, Telegram intelligence, and document automation.
 
----
+I build AI products end to end: from an ambiguous workflow problem and system design to backend implementation, integrations, deployment, and iteration with users. The projects below are production systems or active product work; source code is intentionally not published because it contains commercial logic, third-party integrations, and security-sensitive operational details.
 
-## Projects
+Based in Bangkok and working remotely with international teams.
 
-### [SENSOR](./SENSOR/)
-Telegram intelligence SaaS for lead generation, audience analysis, source discovery, and conversational search.
+## Selected work
 
-SENSOR connects a user's Telegram account, monitors selected chats and channels, detects buying intent, scores active audience members, recommends new Telegram sources, and turns collected messages into searchable RAG knowledge bases.
+### [SENSOR — Telegram intelligence platform](./SENSOR/)
 
-**Features:**
-- SENSOR.Leads: keyword and AI modes, live monitoring, historical scans, lead delivery, CSV export
-- SENSOR.Chat: Telegram message ingest, FileSearch/RAG, topic digest, source-aware answers
-- SENSOR.Audience: active participant collection, AI scoring, evidence quotes, CSV export
-- SENSOR.Catalog: source catalog, similar-source recommendations, audience-overlap graph
-- SENSOR.Tasks: scheduled AI digests and recurring Telegram intelligence tasks
-- Multi-tenant organizations, team support, encrypted Telegram sessions, stable userbot profiles
-- Web dashboard, Telegram bot UI, billing tiers, quotas, YooKassa/CryptoPay/Telegram Stars
+SENSOR started as a personal tool for navigating fast-moving crypto Telegram chats. I wanted a NotebookLM-like way to collect conversations, search them semantically, and return to the original source context instead of scrolling through chat history.
 
-**Technologies:** Python, FastAPI, PostgreSQL, Telethon, Pyrogram, python-telegram-bot, Google Gemini, FileSearch/RAG, React/Vite, Docker, nginx
+It grew into a production AI platform for Telegram intelligence, semantic monitoring, and lead generation. The product helps teams find relevant commercial conversations, research communities, and build searchable knowledge bases from the Telegram sources they follow.
+
+**My role:** founder and applied AI engineer. I own product discovery, architecture, Python/FastAPI backend, Telegram integrations, LLM workflows, database design, security, billing, deployment, and iteration.
+
+**Stack:** Python, FastAPI, PostgreSQL, Telethon, Pyrogram, Google Gemini, retrieval workflows, React/TypeScript, Docker, nginx.
+
+[Product case study →](./SENSOR/)
 
 ---
 
-### [AI_SMM](./AI_SMM/)
-Telegram bots for wholesale suppliers and marketplace sellers.
+### [Moqup — import and operations automation](./Moqup/)
 
-Automated product catalog management and Telegram channel publishing using AI.
+Production services for import, logistics, and CRM workflows: AI-assisted TN VED classification, document generation, CRM-to-Excel exports with product images, a knowledge-base assistant, and scheduled webhook automations.
 
-**Features:**
-- AI product recognition from photos
-- Automatic photo and text enhancement
-- Scheduled publishing to Telegram channels
-- Price list and informational post automation
-- AI-powered support bot
+**Stack:** Python, FastAPI, PostgreSQL, pgvector-ready data model, Google Gemini, OpenPyXL, python-docx, systemd.
 
-**Technologies:** Python, Telegram Bot API, Google Gemini, PostgreSQL, Redis, Google Sheets API
+[Project details →](./Moqup/)
 
 ---
 
-### [Moqup](./Moqup/)
-Business automation platform for import, logistics, and CRM workflows.
+### [Cleaning Manager — tender document processing](./Cleaning_manager/)
 
-Microservice platform for China-to-Russia import operations: product classification, broker responses, document generation, CRM exports, and scheduled automations.
+Production workflow for processing incoming tender documents. It ingests files from Gmail and Google Drive, extracts requirements from office documents and scanned PDFs, and generates calculated Excel outputs for the operations team.
 
-**Features:**
-- AI Broker API for two-step TN VED classification and customs guidance
-- Legacy TNVED API for customs code and duty calculation
-- CRM2Sheets export from CRM webhooks to Excel with product images
-- Doc Filler for contracts, invoices, and shipping documents
-- Shared PostgreSQL database with pgvector-ready architecture
-- Scheduler for webhook automation
+**Stack:** Python, Google Drive API, Gmail API, OCR, LLM extraction, OpenPyXL, PyMuPDF.
 
-**Technologies:** Python, FastAPI, PostgreSQL, pgvector, Google Gemini, openpyxl, python-docx, systemd
+[Project details →](./Cleaning_manager/)
 
 ---
 
-### [Cleaning_manager](./Cleaning_manager/)
-Cleaning tender processor with Google Drive and AI document analysis.
+### [AI_SMM — content workflows for Telegram sellers](./AI_SMM/)
 
-Production system that monitors incoming tender documents, extracts data, analyzes requirements, and generates calculated Excel outputs.
+AI-assisted workflow for marketplace and wholesale sellers: product photos are enhanced, product information is turned into marketing content, and publications are scheduled to Telegram channels.
 
-**Features:**
-- Google Drive and Gmail document ingestion
-- Support for DOCX, DOC, PDF, XLS, XLSX
-- OCR for scanned PDFs
-- AI extraction via Polza.ai
-- Excel generation with regional and population coefficients
-- Duplicate-safe continuous processing
+**Stack:** Python, Telegram Bot API, Google Gemini, PostgreSQL, Redis, Google Sheets API.
 
-**Technologies:** Python, Google Drive API, Gmail API, Polza.ai, Tesseract OCR, OpenPyXL, PyMuPDF
+[Project details →](./AI_SMM/)
 
 ---
 
-### [industrial_automation](./industrial_automation/)
-Industrial document automation for engineering and project teams.
+### [Industrial document intelligence](./industrial_automation/)
 
-AI-assisted system for contract review and cross-document validation in industrial engineering projects.
+Active product direction for engineering and project teams. The implemented module analyzes tender documentation; the broader workflow for contracts, engineering documents, drawings, and structured project data remains in development.
 
-**Features:**
-- Contract review against internal templates and risk rules
-- Protocol of disagreements generation for customer contracts
-- Validation of project documentation across PDF, DOCX, XLSX, and DWG-derived data
-- Cross-checking KKS codes, cables, signals, equipment, specifications, and revisions
-- Source data completeness checks and project document registry
-- Human approval workflow for legal and engineering decisions
+**Stack:** Python, document parsing, OCR, LLM analysis, Excel/Word generation.
 
-**Technologies:** Python, document parsing, OCR, LLM analysis, Excel/Word generation, rules engine, CAD/PDF processing pipeline
+[Project details →](./industrial_automation/)
 
----
+## What I work on
 
-## Statistics
+- LLM-powered workflows, agents, and retrieval/search systems
+- Python backends, async APIs, PostgreSQL, and integrations
+- Telegram, Google Workspace, CRM, and document-processing workflows
+- Production concerns: access boundaries, user feedback loops, testing, deployment, and observability
 
-- **Total Projects:** 5
-- **Production Projects:** 4
-- **Projects with Telegram Bot API:** 3
-- **Projects with Google Gemini AI:** 3
-- **Projects with document automation:** 3
-- **Projects with FastAPI:** 2
+## Contact
 
----
-
-## Key Technologies
-
-| Technology | Projects |
-|------------|----------|
-| **Python** | All |
-| **FastAPI** | Moqup, SENSOR |
-| **Telegram Bot API** | SENSOR, AI_SMM, Moqup |
-| **Google Gemini AI** | SENSOR, AI_SMM, Moqup |
-| **PostgreSQL** | AI_SMM, Moqup, SENSOR |
-| **Google Sheets API** | AI_SMM, Moqup, Cleaning_manager |
-| **Google Drive API** | Cleaning_manager |
-| **OCR / document parsing** | Cleaning_manager, industrial_automation |
-| **RAG / semantic search** | SENSOR, Moqup |
-| **React / Vite** | SENSOR |
-
----
-
-## Contacts
-
-- GitHub: [@DChernets](https://github.com/DChernets)
-
----
-
-*Portfolio updated regularly*
+- LinkedIn: [Dmitry Chernets](https://www.linkedin.com/in/dmitry-chernets/)
+- SENSOR: [sensor-tg.tech](https://sensor-tg.tech)
