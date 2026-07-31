@@ -1,177 +1,81 @@
-# SENSOR - Telegram Intelligence Platform
+# SENSOR — Telegram Intelligence Platform
 
-**Production SaaS for Telegram lead generation, audience intelligence, source discovery, and conversational search.**  
-Website: [sensor-tg.tech](https://sensor-tg.tech)  
-Bot: [@sensor_tg_bot](https://t.me/sensor_tg_bot)
+**Production product case study**<br>
+Website: [sensor-tg.tech](https://sensor-tg.tech)
 
----
+## Origin
 
-## Overview
+SENSOR began with a personal research problem. While following many crypto Telegram chats, I kept losing useful context in fast-moving discussions. I wanted something closer to NotebookLM for the conversations I read: a way to collect messages, search them semantically, ask questions with source context, and return to relevant discussions without scrolling for hours.
 
-SENSOR helps teams turn Telegram communities into a structured business signal system. It connects a user's Telegram account, monitors selected chats and channels, detects demand with AI, builds searchable knowledge bases, scores potential customers, and recommends new sources to monitor.
+The first version was a tool for my own workflow. Once the chats became searchable, a broader opportunity emerged: teams also need to notice relevant commercial conversations early, understand why they matter, and turn them into actionable signals.
 
-The product is built around five core modules: SENSOR.Leads, SENSOR.Chat, SENSOR.Audience, SENSOR.Catalog, and SENSOR.Tasks.
+That evolution became SENSOR: a platform for Telegram intelligence, semantic monitoring, and lead generation.
 
----
+## The problem
 
-## Product Modules
+Telegram is useful for research, communities, and B2B conversations, but it is difficult to work with at scale:
 
-### SENSOR.Leads
-Lead monitoring and qualification from Telegram sources:
-- semantic onboarding from a free-form business description;
-- automatic generation of keywords, stopwords, and AI intent prompt;
-- two processing modes: raw keyword monitoring and AI-qualified leads;
-- live monitoring of Telegram groups/channels through userbot sessions;
-- historical scans by natural-language period;
-- hybrid recall: local keyword matching plus bounded Telegram search;
-- context-aware AI evaluation of message chains, replies, and nearby messages;
-- deduplication of repeated leads and repeated raw matches;
-- lead delivery through Telegram bot and web dashboard;
-- CSV export for leads and raw keyword matches.
+- relevant messages disappear in high-volume chats;
+- the same business need can be phrased in many different ways;
+- keyword alerts generate noise without enough context;
+- useful history is hard to revisit, compare, or search;
+- teams need to review a signal before acting on it.
 
-### SENSOR.Chat
-Conversational RAG over collected Telegram data:
-- chat ingestion from selected Telegram sources;
-- Gemini FileSearch / semantic retrieval over collected messages;
-- source-aware answers with context;
-- topic digest generation during ingest;
-- overview-question handling from stored digest data;
-- web and bot flows for starting and querying conversations.
+## Product approach
 
-### SENSOR.Audience
-Audience intelligence for people already active in monitored communities:
-- passive collection of active participants from project sources;
-- audience history collection by thematic keywords or full selected chat sweep;
-- audience account enrichment with public Telegram profile data;
-- AI scoring per project: overall, interest, client fit, recency, and noise;
-- verdicts: hot, promising, not fit, insufficient data;
-- evidence quotes with links back to source messages;
-- filtered audience lists, member cards, counters, and CSV export;
-- safe outreach model: Telegram deep links only, no automated cold DMs.
+SENSOR connects selected Telegram sources and turns the resulting discussions into a reviewable intelligence workflow.
 
-### SENSOR.Catalog
-Telegram source discovery and recommendations:
-- organization-scoped source catalog for channels, megagroups, and chats;
-- source profile enrichment with title, username, description, category, geo/language hints, and member count;
-- Telegram similar-source recommendations through project userbot;
-- source similarity edges from Telegram recommendations and audience overlap;
-- source graph built from passive active-author overlap using salted hashes;
-- "similar sources" view in bot and web dashboard;
-- add recommended public sources through the existing autojoin/source flow;
-- Pro+ limits for source discovery to control Telegram request risk.
-
-### SENSOR.Tasks
-Scheduled AI digests and recurring intelligence tasks:
-- natural-language task creation through a semantic parser;
-- scheduled digest generation from Telegram messages;
-- AI summaries delivered back through the Telegram bot;
-- safe Telegram HTML formatting for generated digests;
-- task execution tracked through scheduler and storage models.
-
----
-
-## Platform Features
-
-- Multi-tenant organizations and team support
-- QR / phone-code Telegram account connection
-- Stable userbot profile binding for lead projects
-- Fernet-encrypted Telegram session storage
-- PostgreSQL-first storage with async SQLAlchemy
-- FastAPI backend for the web dashboard
-- React/Vite web dashboard at `app.sensor-tg.tech`
-- Telegram bot management interface
-- Billing tiers and quota gates
-- YooKassa, CryptoPay, and Telegram Stars payment providers
-- AI credit accounting for chat, history scans, audience scoring, and source discovery
-- Cross-process job runners for long-running scans, collection, and scoring
-- Persistent memory / AI context layer for better project-specific assistance
-- Langfuse-ready LLM observability hooks
-
----
-
-## Business Value
-
-| Problem | SENSOR Solution |
-|---------|-----------------|
-| Manual Telegram monitoring misses buying intent | SENSOR.Leads detects demand continuously |
-| Keyword alerts are noisy | AI mode evaluates context and conversation chains |
-| Teams do not know which chats to monitor next | SENSOR.Catalog recommends similar sources |
-| Community members are hard to qualify | SENSOR.Audience scores active participants with evidence |
-| Chat history is hard to search | SENSOR.Chat turns Telegram history into a RAG knowledge base |
-| Multiple clients need isolated data | Organizations, userbot profiles, and encrypted sessions isolate data |
-
----
-
-## Target Users
-
-- Web3 and crypto community managers
-- Marketing and lead generation agencies
-- Telegram marketplace owners
-- Media buyers and growth teams
-- B2B companies that sell through Telegram communities
-- Teams that need searchable Telegram knowledge bases
-
----
-
-## Tech Stack
-
-| Area | Technology |
-|------|------------|
-| Backend | Python 3.10+/3.11, FastAPI, asyncio |
-| Telegram | Telethon, Pyrogram, python-telegram-bot |
-| AI | Google Gemini, google-genai, FileSearch/RAG |
-| Database | PostgreSQL 16, async SQLAlchemy |
-| Frontend | React, Vite, TypeScript |
-| Billing | YooKassa, CryptoPay, Telegram Stars |
-| Security | Fernet encrypted sessions, tenant-scoped access checks |
-| Deployment | Docker Compose, nginx, Linux VPS, systemd-style ops |
-| Observability | structured logs, LLM tracing hooks |
-
----
-
-## Architecture
-
-```text
-Telegram user account
-        |
-        v
-QR / phone auth -> encrypted session -> stable userbot profile
-        |
-        v
-Collector / scanner layer
-        |
-        +--> SENSOR.Leads: matches, AI lead scoring, delivery, CSV
-        |
-        +--> SENSOR.Chat: ingest, FileSearch/RAG, digest, answers
-        |
-        +--> SENSOR.Audience: active member base, scoring, evidence, export
-        |
-        +--> SENSOR.Catalog: source catalog, recommendations, overlap graph
-        |
-        +--> SENSOR.Tasks: scheduled AI digests and recurring checks
-        |
-        v
-Telegram bot + FastAPI web dashboard + billing/limits
+```mermaid
+flowchart LR
+    A[Selected Telegram sources] --> B[Collection and normalization]
+    B --> C[Semantic monitoring]
+    B --> D[Source-aware retrieval]
+    C --> E[Evidence-backed signals]
+    D --> F[Search and answers]
+    E --> G[Human review and action]
+    F --> G
 ```
 
----
+The system supports:
 
-## Status
+- semantic lead detection alongside keyword-based monitoring;
+- historical scans and continuous monitoring of selected chats and channels;
+- source-aware conversational search over collected Telegram discussions;
+- evidence quotes and links back to the original context for review;
+- audience and source research workflows for teams that need to understand a community before outreach;
+- scheduled digests and recurring intelligence tasks.
 
-| Area | Status |
-|------|--------|
-| Multi-tenant Telegram auth | Production |
-| SENSOR.Leads live monitoring | Production |
-| Keyword and AI processing modes | Production |
-| Historical lead scans | Production |
-| SENSOR.Chat RAG | Production |
-| SENSOR.Audience scoring/export | Implemented |
-| SENSOR.Catalog recommendations | Implemented |
-| SENSOR.Tasks scheduled digests | Implemented |
-| Web dashboard API | Implemented |
-| Billing and plan limits | Implemented |
-| Team / organization model | Implemented |
+## Engineering decisions
 
----
+The difficult part was not assigning an LLM score to a message. It was making the output useful and reviewable in a real workflow.
 
-*Built with Python, Telegram APIs, Google Gemini, PostgreSQL, FastAPI, and React.*
+### Semantic matching over brittle keyword rules
+
+People rarely describe a commercial need using the same words. SENSOR combines conventional matching with semantic evaluation so that the system can account for the request, nearby context, and the user’s intent rather than a single phrase.
+
+### Evidence before automation
+
+Each signal is designed to be checked against the original message and surrounding discussion. The goal is not to treat model output as ground truth, but to help a person spend attention on the conversations most likely to matter.
+
+### Production boundaries
+
+The product handles private operational data and long-running collection workflows. The implementation therefore includes tenant-scoped access, encrypted Telegram sessions, background processing, quota and billing controls, and feedback loops for improving signal quality over time.
+
+## My role
+
+I am the founder and applied AI engineer behind SENSOR. I own the product and engineering cycle:
+
+- user research and product design;
+- system architecture and backend development;
+- Telegram account, bot, and data-collection integrations;
+- LLM and retrieval workflows;
+- PostgreSQL data model, security boundaries, billing, deployment, and maintenance;
+- feedback-driven iteration with users.
+
+## Technology
+
+Python, FastAPI, PostgreSQL, async SQLAlchemy, Telethon, Pyrogram, python-telegram-bot, Google Gemini, retrieval workflows, React/TypeScript, Docker, nginx, Linux/VPS, and pytest.
+
+## Public case-study boundary
+
+SENSOR is an active commercial product. This case study intentionally describes the product and the engineering decisions at a high level; it does not publish source code, customer data, Telegram sessions, secrets, or operational infrastructure details.

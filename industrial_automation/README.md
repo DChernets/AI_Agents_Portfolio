@@ -1,107 +1,32 @@
-# Industrial Automation - Contract and Engineering Document Review
+# Industrial Document Intelligence
 
-**AI-assisted automation system for industrial engineering document workflows.**
+**Active product direction for engineering and project teams**
 
----
+## Current scope
 
-## Overview
+The implemented module analyzes tender documentation for industrial gas-cleaning projects. It helps the team review incoming tender packages, extract relevant requirements, and organize the result for further technical and commercial work.
 
-Industrial Automation helps engineering companies reduce manual document review work across contracts, technical documentation, and project deliverables. The system combines deterministic rules, document parsing, OCR, and LLM analysis with human approval checkpoints.
+The broader document-intelligence system is in development. It is intended to support future workflows around contracts, technical specifications, engineering documentation, drawings, KKS data, and structured project records—but those capabilities are not presented here as completed product modules.
 
-The solution is designed for industrial projects where accuracy, traceability, and confidentiality matter more than fully autonomous decisions.
+## Implemented module: tender documentation analysis
 
----
+- ingest and parse tender packages in common office and PDF formats;
+- extract key requirements and source-data references;
+- identify missing, inconsistent, or clarification-worthy inputs;
+- prepare a structured summary for the engineering team;
+- keep human review in the decision loop for technical and commercial conclusions.
 
-## Modules
+## Design principles
 
-### Contract Review
-Automated review of customer contracts against internal templates and risk rules:
-- Compares customer contract drafts with the company's preferred contract language
-- Detects legal, commercial, delivery, warranty, IP, and liability risks
-- Generates a protocol of disagreements
-- Proposes alternative wording and commercial rationale
-- Marks which items require legal, financial, commercial, or executive approval
+- **Traceability:** findings should lead back to the source document, page, or section.
+- **Human approval:** AI assists document review; it does not make legal or engineering decisions autonomously.
+- **Confidentiality:** industrial project documentation is handled with appropriate access and data-boundary controls.
+- **Incremental delivery:** each new workflow is validated against real documents before being promoted to a wider product capability.
 
-### Project Documentation Validation
-Cross-document consistency checks for engineering deliverables:
-- Validates PDF, DOCX, XLSX, and DWG-derived data
-- Cross-checks EM, ATX, TX/P&ID sections
-- Detects mismatches in KKS codes, cables, signals, equipment, specifications, and revisions
-- Produces a structured issue table with document/page/sheet references
-- Prioritizes findings by severity and recommends engineer actions
+## Technology direction
 
----
+Python, document parsing, OCR, LLM-assisted analysis, Excel/Word generation, and rules-based validation.
 
-## Key Features
+## Roadmap
 
-- Contract risk extraction
-- Protocol of disagreements generation
-- Source data completeness checks
-- Project document registry
-- OCR and table extraction from technical documents
-- Cross-document validation rules
-- CAD/PDF processing pipeline for drawing-derived text
-- Human approval workflow for legal and engineering decisions
-- Confidentiality-first processing model
-
----
-
-## Typical Workflow
-
-```text
-Input documents
-      |
-      v
-Parsing / OCR / table extraction
-      |
-      v
-Structured project data and document registry
-      |
-      +--> Contract Review -> Protocol of disagreements
-      |
-      +--> Documentation Validation -> Issue table and engineer recommendations
-      |
-      v
-Human approval and final export
-```
-
----
-
-## Tech Stack
-
-| Area | Technologies |
-|------|--------------|
-| Backend | Python 3.10+, async processing |
-| Documents | PDF, DOCX, XLSX parsing |
-| OCR | OCR pipeline for scans and drawings |
-| AI | LLM-assisted analysis and explanation |
-| Rules | Deterministic validation rules |
-| Output | Word and Excel generation |
-| Engineering data | KKS, cable journals, specifications, revision tables |
-
----
-
-## Business Impact
-
-- Faster preparation of contract disagreement protocols
-- Earlier detection of missing source data
-- Reduced manual cross-checking across engineering documents
-- Better traceability of risks and inconsistencies
-- Clear approval flow for sensitive legal and technical decisions
-
----
-
-## Status
-
-| Module | Status |
-|--------|--------|
-| Contract Review | Implemented |
-| Protocol of Disagreements | Implemented |
-| Source Data Checks | Implemented |
-| Project Document Registry | Implemented |
-| Cross-Document Validation | Implemented |
-| CAD/DWG Pipeline | Implemented as staged processing |
-
----
-
-*Built for industrial engineering teams working with contracts, technical specifications, drawings, and project documentation.*
+Future work may extend the system to contract review, project-document consistency checks, drawings and CAD-derived data, KKS references, specifications, and revision tracking. Those areas are directions for development, not current production claims.
