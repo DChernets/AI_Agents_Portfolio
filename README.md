@@ -24,9 +24,9 @@ It grew into a production AI platform for Telegram intelligence, semantic monito
 
 ### [Moqup — import and operations automation](./Moqup/)
 
-Production services for import, logistics, and CRM workflows: AI-assisted TN VED classification, document generation, CRM-to-Excel exports with product images, a knowledge-base assistant, and scheduled webhook automations.
+Production services for import, logistics, and CRM workflows: AI-assisted TN VED classification, document generation, CRM-to-Excel exports with product images, a RAG-powered knowledge-base assistant (pgvector), and scheduled webhook automations.
 
-**Stack:** Python, FastAPI, PostgreSQL, pgvector-ready data model, Google Gemini, OpenPyXL, python-docx, systemd.
+**Stack:** Python, FastAPI, PostgreSQL, pgvector, Google Gemini, OpenPyXL, python-docx, systemd.
 
 [Project details →](./Moqup/)
 

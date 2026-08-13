@@ -49,6 +49,14 @@ Automation engine for recurring tasks:
 - Configurable endpoints and timing
 - systemd-managed production process
 
+### Chatbot — AI Knowledge-Base Assistant
+RAG-powered consultant for foreign trade, import, and customs operations:
+- Answers questions about customs procedures, TN VED classification rules, and import compliance
+- Retrieval-augmented generation over a knowledge base using **pgvector** for semantic search
+- Embeds regulatory documents, guides, and reference materials into PostgreSQL with vector similarity matching
+- Provides source-linked answers so users can verify the origin of each recommendation
+- Handles multi-turn conversations with context awareness
+
 ### Product Search
 Iframe-ready tool for personal accounts:
 - Step-by-step brief collection for sourcing products in China
@@ -62,7 +70,7 @@ Iframe-ready tool for personal accounts:
 
 - Microservice architecture with shared business context
 - PostgreSQL as the main database
-- pgvector-ready design for future semantic search
+- pgvector for semantic search and RAG in the chatbot service
 - Async-first FastAPI services
 - Webhook-based integration with CRM and external websites
 - systemd deployment on Linux VPS
@@ -75,7 +83,7 @@ Iframe-ready tool for personal accounts:
 | Category | Technologies |
 |----------|--------------|
 | Backend | Python 3.10+, FastAPI, asyncio |
-| Database | PostgreSQL, pgvector-ready architecture |
+| Database | PostgreSQL, pgvector (RAG / semantic search) |
 | AI | Google Gemini |
 | Documents | openpyxl, Pillow, python-docx |
 | Integrations | Webhooks, Google Sheets API |
@@ -119,7 +127,7 @@ moqup-chatbot
 | CRM2Sheets | Production |
 | Doc Filler | Production |
 | Scheduler | Production |
-| Chatbot | In development |
+| Chatbot | Production (RAG with pgvector) |
 | Product Search | Planned / architecture ready |
 
 ---
