@@ -2,13 +2,13 @@
 
 **Business product for an industrial gas-cleaning engineering company**
 
-**Status:** tender-analysis module implemented; contract-review application in pre-production hardening for an internal pilot.
+**Status:** tender-analysis module implemented; the application's contract-review workflow is in pre-production hardening for an internal pilot.
 
 ## Business context
 
 Industrial engineering teams receive large tender and contract packages assembled from Word and Excel files. Engineers and legal reviewers need to find requirements, identify risks and missing inputs, prepare revisions, and preserve a traceable link to the source documents.
 
-The work is split into two product modules built around real company documents and review workflows.
+The native macOS application contains two product modules built around real company documents and review workflows.
 
 ## Tender documentation analysis
 
@@ -22,11 +22,11 @@ The implemented tender-analysis module:
 
 ## Contract Review application
 
-The second module is a native macOS application for reviewing customer contracts from the Supplier's position. It is approaching an internal pilot and currently supports the full operator workflow:
+The contract-review module works from the Supplier's position. It is approaching an internal pilot and currently supports the full operator workflow:
 
 1. The employee adds a contract and its attachments in a native desktop interface.
 2. The application extracts the document structure and masks sensitive data locally.
-3. Only the redacted package is sent to the LLM workflow for clause-level analysis against the company's rules and approved examples.
+3. Only the redacted package is sent to the LLM workflow for clause-level comparison with the company's playbook, including its rules and approved examples.
 4. The reviewer accepts, edits, or removes each proposed change.
 5. The application generates a Word draft of the disagreement protocol and can save explicitly approved feedback for later knowledge-base updates.
 

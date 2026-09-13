@@ -50,7 +50,7 @@ Active product for wholesale suppliers selling through Telegram. A supplier send
 
 ### [Industrial document intelligence](./industrial_automation/)
 
-AI document systems for an industrial gas-cleaning engineering company. The implemented tender-analysis module extracts requirements and missing inputs from tender packages. A separate native macOS contract-review application is being hardened for an internal pilot: it performs local redaction, clause-level LLM analysis, operator review, and Word protocol generation.
+A native macOS document-intelligence application for an industrial gas-cleaning engineering company. Its tender-analysis module extracts requirements and missing inputs; its contract workflow compares clauses with the company's playbook, performs local redaction and LLM analysis, supports operator review, and generates a Word protocol. The application is being hardened for an internal pilot.
 
 **Stack:** Python, document parsing, LLM analysis, local redaction, rules and precedents, Word generation, pywebview, macOS packaging.
 
