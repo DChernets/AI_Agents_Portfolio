@@ -1,73 +1,70 @@
-# Dmitry Chernets — Applied AI Engineering Portfolio
+# Dmitrii Chernets - Applied AI Engineering Portfolio
 
-Selected work in applied AI, Telegram intelligence, and document automation.
+Selected production systems and active product work in applied AI, Telegram intelligence, and document automation.
 
-I build AI products end to end: from an ambiguous workflow problem and system design to backend implementation, integrations, deployment, and iteration with users. The projects below are production systems or active product work; source code is intentionally not published because it contains commercial logic, third-party integrations, and security-sensitive operational details.
-
-Based in Bangkok and working remotely with international teams.
+I build AI products for businesses end to end: I clarify the workflow with users and domain experts, define the first useful version, implement the product, deploy it, and iterate from real feedback. The source code is private because these systems contain customer workflows, commercial logic, third-party integrations, and security-sensitive operational details.
 
 ## Selected work
 
-### [SENSOR — Telegram intelligence platform](./SENSOR/)
+### [SENSOR - Telegram intelligence platform](./SENSOR/)
 
-SENSOR started as a personal tool for navigating fast-moving crypto Telegram chats. I wanted a NotebookLM-like way to collect conversations, search them semantically, and return to the original source context instead of scrolling through chat history.
+Production multi-tenant platform for Telegram monitoring, semantic search, and commercial-demand discovery. Teams connect selected sources, review evidence-backed signals, search collected discussions with links to the original context, and improve relevance through feedback.
 
-It grew into a production AI platform for Telegram intelligence, semantic monitoring, and lead generation. The product helps teams find relevant commercial conversations, research communities, and build searchable knowledge bases from the Telegram sources they follow.
+**My role:** founder and AI Product Engineer. I own product discovery, architecture, Python/FastAPI backend, React/TypeScript interface, Telegram integrations, LLM and retrieval workflows, security boundaries, billing, deployment, and iteration with users.
 
-**My role:** founder and applied AI engineer. I own product discovery, architecture, Python/FastAPI backend, Telegram integrations, LLM workflows, database design, security, billing, deployment, and iteration.
+**Stack:** Python, FastAPI, PostgreSQL, Telethon, Pyrogram, Google Gemini, React/TypeScript, Docker, nginx.
 
-**Stack:** Python, FastAPI, PostgreSQL, Telethon, Pyrogram, Google Gemini, retrieval workflows, React/TypeScript, Docker, nginx.
-
-[Product case study →](./SENSOR/)
+[Product case study](./SENSOR/)
 
 ---
 
-### [Moqup — import and operations automation](./Moqup/)
+### [Import and operations automation](./Moqup/)
 
-Production services for import, logistics, and CRM workflows: AI-assisted TN VED classification, document generation, CRM-to-Excel exports with product images, a RAG-powered knowledge-base assistant (pgvector), and scheduled webhook automations.
+Production services for an import and logistics business: AI-assisted customs classification and broker guidance, CRM-to-Excel exports with product images, document generation, a RAG knowledge-base assistant backed by pgvector, and scheduled webhook automations.
 
-**Stack:** Python, FastAPI, PostgreSQL, pgvector, Google Gemini, OpenPyXL, python-docx, systemd.
+**Stack:** Python, FastAPI, PostgreSQL, pgvector, Google Gemini, OpenPyXL, python-docx, Google Workspace APIs, systemd.
 
-[Project details →](./Moqup/)
+[Project details](./Moqup/)
 
 ---
 
-### [Cleaning Manager — tender document processing](./Cleaning_manager/)
+### [Tender Manager for a cleaning company](./Cleaning_manager/)
 
-Production workflow for processing incoming tender documents. It ingests files from Gmail and Google Drive, extracts requirements from office documents and scanned PDFs, and generates calculated Excel outputs for the operations team.
+Production workflow for a cleaning business. It monitors Gmail and Google Drive, processes office documents and scanned PDFs, extracts tender requirements, applies business calculations, and returns structured Excel outputs to the operations team.
 
 **Stack:** Python, Google Drive API, Gmail API, OCR, LLM extraction, OpenPyXL, PyMuPDF.
 
-[Project details →](./Cleaning_manager/)
+[Project details](./Cleaning_manager/)
 
 ---
 
-### [AI_SMM — content workflows for Telegram sellers](./AI_SMM/)
+### [AI SMM - content workflow for wholesale suppliers](./AI_SMM/)
 
-AI-assisted workflow for marketplace and wholesale sellers: product photos are enhanced, product information is turned into marketing content, and publications are scheduled to Telegram channels.
+Active product for wholesale suppliers selling through Telegram. A supplier sends product photos; the system recognizes the product, improves the images, generates a product card, manages the catalogue, and schedules publication to connected channels.
 
 **Stack:** Python, Telegram Bot API, Google Gemini, PostgreSQL, Redis, Google Sheets API.
 
-[Project details →](./AI_SMM/)
+[Project details](./AI_SMM/)
 
 ---
 
 ### [Industrial document intelligence](./industrial_automation/)
 
-Active product direction for engineering and project teams. The implemented module analyzes tender documentation; the broader workflow for contracts, engineering documents, drawings, and structured project data remains in development.
+AI document systems for an industrial gas-cleaning engineering company. The implemented tender-analysis module extracts requirements and missing inputs from tender packages. A separate native macOS contract-review application is being hardened for an internal pilot: it performs local redaction, clause-level LLM analysis, operator review, and Word protocol generation.
 
-**Stack:** Python, document parsing, OCR, LLM analysis, Excel/Word generation.
+**Stack:** Python, document parsing, LLM analysis, local redaction, rules and precedents, Word generation, pywebview, macOS packaging.
 
-[Project details →](./industrial_automation/)
+[Project details](./industrial_automation/)
 
-## What I work on
+## How I work
 
-- LLM-powered workflows, agents, and retrieval/search systems
-- Python backends, async APIs, PostgreSQL, and integrations
-- Telegram, Google Workspace, CRM, and document-processing workflows
-- Production concerns: access boundaries, user feedback loops, testing, deployment, and observability
+- Product discovery, domain research, user workflows, and first-version scope
+- AI-native implementation with Codex, Claude Code, and reusable agent instructions
+- LLM applications, retrieval, structured outputs, evaluation, and feedback loops
+- Python backends, PostgreSQL, web interfaces, integrations, and document pipelines
+- Deployment, access boundaries, observability, support, and iteration with users
 
 ## Contact
 
-- LinkedIn: [Dmitry Chernets](https://www.linkedin.com/in/dmitry-chernets/)
+- LinkedIn: [Dmitrii Chernets](https://www.linkedin.com/in/dmitry-chernets/)
 - SENSOR: [sensor-tg.tech](https://sensor-tg.tech)

@@ -1,135 +1,49 @@
-# Moqup - Import and Logistics Automation Platform
+# Import and Operations Automation
 
-**Business automation platform for China-to-Russia import, logistics, customs classification, CRM workflows, and document generation.**
+**Production services for an import and logistics business**
 
----
+## Business context
 
-## Overview
+The company handles product sourcing, customs classification, CRM records, documents, spreadsheets with product images, and recurring integrations. These workflows were implemented as a set of production services so each process could be deployed and supported independently.
 
-Moqup is a production microservice platform that automates operational workflows for an import and logistics business. It combines AI-assisted customs classification, broker responses, CRM data export, document generation, and scheduled webhook automation.
+## Delivered workflows
 
-The platform is built as a set of independent services sharing common business entities and a PostgreSQL-first architecture.
+### AI customs broker
 
----
+The service receives product information, proposes a shortlist of TN VED codes and clarification questions, stores the request state, and produces a structured final response with classification guidance, documents, risks, and related checks.
 
-## Microservices
+### CRM and spreadsheet automation
 
-### AI Broker API
-Main AI service for product classification and broker guidance:
-- Receives product data via webhook
-- Performs Step 1: shortlist of TN VED codes and clarification questions
-- Stores request state in PostgreSQL
-- Accepts client clarifications
-- Performs Step 2: final code selection, documents, risks, Chestny Znak checks, and recommendations
-- Provides JSON API and development UI
+CRM webhooks trigger styled Excel exports with product information and embedded images. The workflow also supports Google Sheets templates and downloadable outputs.
 
-### TNVED API
-Legacy FastAPI service for customs classification:
-- Determines 10-digit TN VED codes
-- Calculates customs duty and VAT
-- Supports product descriptions and optional images
-- Sends results back to CRM or website postback endpoints
+### Document generation
 
-### CRM2Sheets
-CRM export automation:
-- Receives CRM webhooks
-- Generates styled Excel files
-- Embeds product images into spreadsheets
-- Supports Google Sheets templates and downloadable outputs
+Structured CRM and order data is applied to Word templates for business documents used by the operations team.
 
-### Doc Filler
-Document generation service:
-- Fills Word templates from structured order/client data
-- Generates contracts, invoices, and shipment documents
-- Runs as a webhook-driven FastAPI service
+### Knowledge-base assistant
 
-### Scheduler
-Automation engine for recurring tasks:
-- Scheduled webhook execution
-- Configurable endpoints and timing
-- systemd-managed production process
+A production RAG assistant answers questions about import, customs, and operational procedures using the company's reference materials. It retrieves relevant passages through pgvector, provides links to the supporting sources, and maintains context across multi-turn conversations.
 
-### Chatbot — AI Knowledge-Base Assistant
-RAG-powered consultant for foreign trade, import, and customs operations:
-- Answers questions about customs procedures, TN VED classification rules, and import compliance
-- Retrieval-augmented generation over a knowledge base using **pgvector** for semantic search
-- Embeds regulatory documents, guides, and reference materials into PostgreSQL with vector similarity matching
-- Provides source-linked answers so users can verify the origin of each recommendation
-- Handles multi-turn conversations with context awareness
+### Scheduled integrations
 
-### Product Search
-Iframe-ready tool for personal accounts:
-- Step-by-step brief collection for sourcing products in China
-- Session-based draft storage
-- AI-assisted summary and normalization
-- Designed for web UI rather than Telegram-first interaction
+A small scheduling service executes recurring webhooks and integration tasks under production monitoring.
 
----
+## Engineering approach
 
-## Architecture Highlights
+- independent FastAPI services with clear operational boundaries;
+- PostgreSQL for persistent request and business state, with pgvector for semantic retrieval;
+- asynchronous external API and webhook integrations;
+- validation of structured model outputs before they enter downstream workflows;
+- Linux deployment with systemd, nginx, logs, and service-level recovery.
 
-- Microservice architecture with shared business context
-- PostgreSQL as the main database
-- pgvector for semantic search and RAG in the chatbot service
-- Async-first FastAPI services
-- Webhook-based integration with CRM and external websites
-- systemd deployment on Linux VPS
-- Environment-based configuration and protected endpoints
+## My role
 
----
+I translated operating workflows into service boundaries, designed the APIs and data model, implemented the AI and document pipelines, integrated them with the company's CRM and Google workflows, and deployed and supported the services on a production server.
 
-## Tech Stack
+## Technology
 
-| Category | Technologies |
-|----------|--------------|
-| Backend | Python 3.10+, FastAPI, asyncio |
-| Database | PostgreSQL, pgvector (RAG / semantic search) |
-| AI | Google Gemini |
-| Documents | openpyxl, Pillow, python-docx |
-| Integrations | Webhooks, Google Sheets API |
-| Deployment | Linux VPS, systemd, nginx |
-| Validation | Pydantic |
-| HTTP | httpx |
+Python, FastAPI, asyncio, PostgreSQL, pgvector, Google Gemini, OpenPyXL, python-docx, Google Sheets API, webhooks, httpx, Pydantic, Linux, systemd, and nginx.
 
----
+## Public case-study boundary
 
-## Business Impact
-
-- Reduced manual customs classification and broker response work
-- Automated CRM-to-Excel exports with product images
-- Standardized document generation from templates
-- Created a shared foundation for future client memory, RAG, and CRM enrichment
-- Centralized operational workflows into production-managed services
-
----
-
-## Production Environment
-
-Deployed on a dedicated Linux server with systemd-managed services:
-
-```text
-moqup-ai-broker
-moqup-tnved
-moqup-crm2sheets
-moqup-docfiller
-moqup-scheduler
-moqup-chatbot
-```
-
----
-
-## Status
-
-| Service | Status |
-|---------|--------|
-| AI Broker | Production / main AI API |
-| TNVED API | Legacy production service |
-| CRM2Sheets | Production |
-| Doc Filler | Production |
-| Scheduler | Production |
-| Chatbot | Production (RAG with pgvector) |
-| Product Search | Planned / architecture ready |
-
----
-
-*Built with Python, FastAPI, PostgreSQL, Google Gemini, and document automation tooling.*
+The repository contains a case-study description only. Customer data, CRM schemas, credentials, business rules, and production source code are private.

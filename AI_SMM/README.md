@@ -1,75 +1,45 @@
-# AI_SMM - Telegram Bots for Wholesale Suppliers
+# AI SMM for Wholesale Suppliers
 
-> Automate product catalog management and Telegram channel publishing with AI
+**Active product for catalogue and Telegram publishing workflows**
 
-## About
+## Business context
 
-**AI_SMM** is a comprehensive automation solution for wholesale suppliers at marketplaces. The system consists of two integrated Telegram bots powered by Google Gemini AI:
+Wholesale suppliers regularly turn informal product photos and short descriptions into catalogue entries and Telegram posts. The work combines product recognition, image preparation, copywriting, pricing data, scheduling, and publication across several channels.
 
-**[@iaismm_bot](https://t.me/iaismm_bot)** - Main automation bot:
-- AI product recognition from photos (Gemini 2.5 Flash)
-- Automatic photo enhancement and marketing text generation
-- Smart scheduling and auto-publishing to multiple channels
-- Price list management and informative content generation
+## Product workflow
 
-**[@aismm_support_bot](https://t.me/aismm_support_bot)** - AI-powered support:
-- Automatic answers from knowledge base
-- AI ticket classification (bug/feature/question)
-- Screenshot handling for issue resolution
+The supplier sends one or more product photos to the Telegram bot. The system then:
 
-## Key Features
+- recognizes the product and extracts its attributes;
+- improves the photo for use in a product card;
+- generates editable marketing content;
+- stores the item in the supplier's catalogue;
+- schedules or publishes the item to connected Telegram channels.
 
-**AI Product Recognition:** Send product photo → AI extracts name, description, material, dimensions, packaging. Supports up to 10 photos per batch.
+The publishing workflow supports team access, channel-specific descriptions, publication windows, rate limits, and catalogue management. A separate support bot answers from the product knowledge base and classifies incoming support requests.
 
-**Content Enhancement:** Professional backgrounds, quality processing, marketing copywriting — all automated via Gemini 2.5 Flash.
+## Engineering decisions
 
-**Smart Publishing:**
-- Automatic FIFO queue distribution across morning/evening windows
-- Manual scheduling with calendar and time picker
-- Multi-channel support with custom descriptions
+### Human-controlled publishing
 
-**Informative Posts:** Auto-generated daily content — currency rates (USD, EUR, CNY, TRY), crypto, business news, supplier tips.
+Generated product data and content remain editable before publication. Scheduling and channel settings are explicit so automation does not post to the wrong audience or time slot.
 
-**Privacy-First:** Contact data (phones, addresses) added locally only — never sent to external APIs.
+### Separate operational concerns
 
-## Tech Stack
+Product creation, catalogue state, publishing queues, rate limits, and support requests are handled as separate parts of the system. This keeps failures in one workflow from blocking the others.
 
-| Component | Technology |
-|-----------|------------|
-| Language | Python 3.9+ |
-| Framework | python-telegram-bot 21.0+ with APScheduler |
-| Database | PostgreSQL 15+ with pgvector, Redis |
-| AI | Google Gemini 2.5 Flash (recognition + content) |
-| APIs | Google Sheets/Drive, RSS feeds |
-| Payments | YooKassa integration |
-| Deployment | systemd services, VPS |
+### Privacy boundary
 
-## Architecture Highlights
+Contact details that do not need model processing are added locally. External AI calls receive only the information required for recognition, image work, or content generation.
 
-- **Dual-mode data layer:** PostgreSQL with Redis caching (with Google Sheets legacy fallback)
-- **Slot-based scheduling:** Smart publication windows with conflict resolution
-- **Multi-tenant:** Team functionality with role-based permissions
-- **Atomic rate limiting:** Redis counters with auto-expiry per user
-- **Async-first:** SQLAlchemy 2.0 async with connection pooling
+## My role
 
-## Business Model
+I designed the user workflow, implemented the Telegram interfaces and AI pipelines, built the catalogue and scheduling logic, integrated Google services, and deployed the application for active use and iteration.
 
-| Plan | Product Posts | Info Posts | Features |
-|------|--------------|------------|----------|
-| FREE | 5/day | 1/day | AI recognition, basic features |
-| START | 20/day | 3/day | Auto-publishing, full features |
+## Technology
 
-7-day free trial for new users. Limits reset daily at 00:01 MSK.
+Python, python-telegram-bot, Google Gemini, PostgreSQL, Redis, Google Sheets and Drive APIs, APScheduler, and Linux/systemd deployment.
 
-## Results
+## Public case-study boundary
 
-- Fully automated daily content pipeline for supplier channels
-- Reduced content creation time from hours to minutes
-- 24/7 AI-powered support with automatic ticket classification
-- Scalable multi-user architecture supporting team workflows
-
----
-
-**Live Demo:** [@iaismm_bot](https://t.me/iaismm_bot) 
-
-**© 2025 AI_SMM. Powered by Google Gemini AI.**
+User data, credentials, pricing rules, production configuration, and source code are private. This page describes the product workflow and architecture at a case-study level.

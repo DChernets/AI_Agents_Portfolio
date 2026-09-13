@@ -61,6 +61,10 @@ Each signal is designed to be checked against the original message and surroundi
 
 The product handles private operational data and long-running collection workflows. The implementation therefore includes tenant-scoped access, encrypted Telegram sessions, background processing, quota and billing controls, and feedback loops for improving signal quality over time.
 
+### Operational reliability
+
+LLM requests are monitored for latency and token usage. The integration includes retries, timeouts, provider/model/route/status diagnostics, direct and proxy routes, and controlled failover. These signals help separate model errors from transport and routing failures during support and operation.
+
 ## My role
 
 I am the founder and applied AI engineer behind SENSOR. I own the product and engineering cycle:
