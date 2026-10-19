@@ -18,6 +18,16 @@ Production multi-tenant platform for Telegram monitoring, semantic search, and c
 
 ---
 
+### [Wildberries FBS Supply Chain & Fulfillment Automation](./Wildberries_FBS_Automation/)
+
+Production autonomous fulfillment pipeline for a major Wildberries e-commerce seller: automated daily order aggregation across 24 regional logistics hubs, race-guard supply batching, official WB barcode integration, article-grouped PDF sticker generation with framed separator tags, inventory write-off calculations, and automated Telegram distribution.
+
+**Stack:** Python, FastAPI, Wildberries Marketplace API v3, Content API v2, Pillow, pypdf, python-barcode, SQLite, Telegram Bot API, Linux VPS, systemd.
+
+[Project details](./Wildberries_FBS_Automation/)
+
+---
+
 ### [Import and operations automation](./Moqup/)
 
 Production services for an import and logistics business: AI-assisted customs classification and broker guidance, CRM-to-Excel exports with product images, document generation, a RAG knowledge-base assistant backed by pgvector, and scheduled webhook automations.
