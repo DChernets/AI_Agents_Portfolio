@@ -18,6 +18,18 @@ Production multi-tenant platform for Telegram monitoring, semantic search, and c
 
 ---
 
+### [Plotia - AI garden agent and living plot map](./Plotia/)
+
+Live web/PWA product that turns a real garden or allotment into a 2.5D map. A tool-calling garden agent knows the whole plot, reads plant history, weather and photos, places things on the map and records work, but writes only after the gardener confirms. It is backed by a layered memory, on-demand skills, per-role model chains and an evaluation set (23 of 23 reference checks). Freemium with a viral loop, Paddle billing in sandbox, UK first.
+
+**My role:** product owner and AI Product Engineer. I ran the market research, defined the product and architecture, and built it end to end with AI coding agents: React/PixiJS app, FastAPI backend, the agent and its evals, billing, deployment, landing.
+
+**Stack:** React 19, TypeScript, PixiJS 8, Python, FastAPI, PostgreSQL + pgvector, Gemini and open-weight LLMs, Paddle, Docker, nginx.
+
+[Product case study](./Plotia/) · [plotia.space](https://plotia.space) · [Live app](https://app.plotia.space)
+
+---
+
 ### [Wildberries FBS Supply Chain & Fulfillment Automation](./Wildberries_FBS_Automation/)
 
 Production autonomous fulfillment pipeline for a major Wildberries e-commerce seller: automated daily order aggregation across 24 regional logistics hubs, race-guard supply batching, official WB barcode integration, article-grouped PDF sticker generation with framed separator tags, inventory write-off calculations, and automated Telegram distribution.
