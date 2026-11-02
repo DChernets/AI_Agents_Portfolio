@@ -30,11 +30,11 @@ Live web/PWA product that turns a real garden or allotment into a 2.5D map. A to
 
 ---
 
-### [Wildberries FBS Supply Chain & Fulfillment Automation](./Wildberries_FBS_Automation/)
+### [Wildberries FBS Automation, Operations Dashboard & AI Review Agent](./Wildberries_FBS_Automation/)
 
-Production autonomous fulfillment pipeline for a major Wildberries e-commerce seller: automated daily order aggregation across 24 regional logistics hubs, race-guard supply batching, official WB barcode integration, article-grouped PDF sticker generation with framed separator tags, inventory write-off calculations, and automated Telegram distribution.
+Production system for a Wildberries e-commerce seller: automated daily order aggregation across 24 regional logistics hubs, race-guard supply batching, official WB barcode integration, article-grouped PDF sticker generation with framed separator tags, write-off lists, and automated Telegram distribution. Includes a login-protected web dashboard (daily orders and revenue matrix, stock-out alerts, supply management) and a human-in-the-loop AI agent that drafts replies to customer reviews, with scenario routing, deterministic guardrails, an LLM critic, operator approval before every send, and an evaluation set of 299 real cases.
 
-**Stack:** Python, FastAPI, Wildberries Marketplace API v3, Content API v2, Pillow, pypdf, python-barcode, SQLite, Telegram Bot API, Linux VPS, systemd.
+**Stack:** Python, FastAPI, Wildberries Marketplace, Content and Feedbacks APIs, Ollama Cloud LLMs, Pillow, pypdf, python-barcode, SQLite, Telegram Bot API, Linux VPS, systemd.
 
 [Project details](./Wildberries_FBS_Automation/)
 
